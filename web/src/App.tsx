@@ -11,6 +11,7 @@ import './App.css';
 import Users from './components/Users';
 import Landing from './components/Landing';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 // Gives access from FE to BE (see updated setup below that includes headers and tokens)
 // const client = new ApolloClient({
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <Signup />
+          </Route>
+          <Route path='/login'>
+            <Login />
           </Route>
           <Route path='/'>
             <Users />

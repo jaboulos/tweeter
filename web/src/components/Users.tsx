@@ -13,15 +13,16 @@ interface User {
   name: string;
 }
 
-export default function Users() {
+const Users = () => {
   const { loading, error, data } = useQuery(USERS_QUERY);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
   return (
     <div>
-      {data.users.map((user: User, i: number) => (
-        <p key={i}>{user.name}</p>
-      ))}
+      {data &&
+        data.users.map((user: User, i: number) => <p key={i}>{user.name}</p>)}
     </div>
   );
-}
+};
+
+export default Users;

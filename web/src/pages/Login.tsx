@@ -1,9 +1,11 @@
 import { gql, useMutation } from '@apollo/client';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import TwitterLogo from '../styles/assets/twitter-logo.png';
 
-// redirect afer login
-import { useHistory } from 'react-router-dom';
+// redirect after login
+import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
 // import { validateSchema } from 'graphql';
 
 // create mutation
@@ -11,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      # get back token and set in localstorage
+      # get back token and set in local-storage
       token
     }
   }
@@ -44,7 +46,13 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <img
+        src={TwitterLogo}
+        alt='logo'
+        style={{ width: '50px' }}
+        className='logo'
+      />
+      <h3>Log in to Tweeter</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -65,9 +73,15 @@ const Login = () => {
           <Field name='password' type='password' placeholder='Password' />
           <ErrorMessage name='password' component={'div'} />
 
-          <button type='submit'>Login</button>
+          <button type='submit' className='login-button'>
+            <span>Login</span>
+          </button>
         </Form>
       </Formik>
+      <div className='register'>
+        <h4>Don't have an account?</h4>
+        <Link to='/signup'>Sign up</Link>
+      </div>
     </div>
   );
 };
